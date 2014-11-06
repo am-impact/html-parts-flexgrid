@@ -2,6 +2,11 @@
     @include flexbox;
     @include flex-wrap(wrap);
 
+    .flexbox &:before,
+    .flexbox &:after {
+        display: none;
+    }
+
     // Wanneer de styling zoals border op het element erin komt (bijv een <a>)
     // Dan flexbox ook op li toepassen
     li {
