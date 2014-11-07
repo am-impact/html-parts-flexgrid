@@ -1,16 +1,18 @@
 .flexgrid {
-    @include flexbox;
-    @include flex-wrap(wrap);
+    .flexbox & {
+        @include flexbox;
+        @include flex-wrap(wrap);
 
-    .flexbox &:before,
-    .flexbox &:after {
-        display: none;
-    }
+        .flexbox &:before,
+        .flexbox &:after {
+            display: none;
+        }
 
-    // Wanneer de styling zoals border op het element erin komt (bijv een <a>)
-    // Dan flexbox ook op li toepassen
-    li {
-        @include flexbox();
+        // Wanneer de styling zoals border op het element erin komt (bijv een <a>)
+        // Dan flexbox ook op li toepassen
+        li {
+            @include flexbox();
+        }
     }
 
     // Wanneer element zoals <a> als block in li met flexbox styling zit
