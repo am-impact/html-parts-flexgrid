@@ -1,24 +1,42 @@
 .flexgrid {
+    @extend .clearfix;
+    margin: 0 (-($column-gutter / 2));
+
+    &__item {
+        @for $i from 1 through 12 {
+            &--#{$i} {
+                width: ($i/12)*100%;
+                padding: 0 ($column-gutter / 2);
+            }
+        }
+    }
+
+    //
+    // Flexbox ondersteuning
+    //
     .flexbox & {
         @include flexbox;
         @include flex-wrap(wrap);
 
-        .flexbox &:before,
-        .flexbox &:after {
+        &:before,
+        &:after {
             display: none;
         }
 
-        // Wanneer de styling zoals border op het element erin komt (bijv een <a>)
-        // Dan flexbox ook op li toepassen
-        li {
+        // FLexbox op item zetten om inhoud volledige hoogte te geven
+        &__item {
             @include flexbox();
+            @include flex-direction(column);
         }
     }
 
-    // Wanneer element zoals <a> als block in li met flexbox styling zit
-    // Dan width wel op 100% zetten
-    a {
-        display: block;
-        width: 100%;
+
+    //
+    // Geen flexbox ondersteuning
+    //
+    .no-flexbox & {
+        &__item {
+            float: left;
+        }
     }
 }
